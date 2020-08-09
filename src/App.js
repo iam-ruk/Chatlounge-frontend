@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState,useEffect} from 'react';
 import './App.css';
+import {BrowserRouter,Route} from 'react-router-dom';
+import Form from './form';
+import Chat from './chat';
+import Join from './joins';
+import Enter from './enter';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Route path="/" exact component={Form}/>
+        <Route path="/join" component={Join}/>
+        <Route path="/chat" component={Chat}/>
+        <Route path="/enter" component={Enter}/>
+      </BrowserRouter>
     </div>
   );
 }
