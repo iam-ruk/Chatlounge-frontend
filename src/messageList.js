@@ -2,6 +2,7 @@ import React from 'react'
 import {Row,Col,Card} from 'react-bootstrap';
 export default function List({messages}) {
     const messageArray=messages.map((message)=>{
+        console.log(message)
         return(
             <Card bg={'info'} className='my-2 p-1' >
                 <Card.Body>
