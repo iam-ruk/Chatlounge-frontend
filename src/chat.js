@@ -48,9 +48,7 @@ function Chat({location}) {
                         <InputGroup.Append className=''>
                             <Button  variant='success' className='rounded text-light'
                               onClick={e=>{
-                                  if(message!='')
-                                    socket.emit('message',message);
-
+                                  socket.emit('message',message);
                               }}  > send</Button>
                         </InputGroup.Append>
                     </InputGroup>
