@@ -1,7 +1,14 @@
 import React from 'react'
 import {Row,Col,Card} from 'react-bootstrap';
-import ScrollToBottom from 'react-scroll-to-bottom';
+import  { useEffect, useRef } from 'react'
+
 export default function List({messages}) {
+    const messagesEndRef = useRef(null)
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+      }
+    
+    useEffect(scrollToBottom, [messages]);
     const messageArray=messages.map((message)=>{
         return(
             <Card key={message._id} bg={'info'} className='my-2 p-1' >
@@ -17,10 +24,9 @@ export default function List({messages}) {
         )
         });
     return (
-        <ScrollToBottom>
-            <div>
+        <div>
                 {messageArray}
-            </div>
-        </ScrollToBottom>
+                <div ref={messagesEndRef}/>
+        </div>
     )
 }
