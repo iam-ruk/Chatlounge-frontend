@@ -7,7 +7,7 @@ import {useHistory} from 'react-router-dom';
 import { Container, Badge, Row, Col, ListGroup, InputGroup, FormControl, Card, Button } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 
-var socket=io('localhost:4009/')
+var socket=io('https://chatlite-backend.herokuapp.com/')
 function Enter({location}) {
     const [room,setRoom]=useState('');
     const [welcome,setWelcome]=useState({});
