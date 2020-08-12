@@ -3,15 +3,19 @@ import io from 'socket.io-client';
 import queryString from 'query-string';
 import List from './messageList';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 import { Container, Badge, Row, Col, ListGroup, InputGroup, FormControl, Card, Button } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
-var socket=io('https://chatlite-backend.herokuapp.com/')
-
+var socket=io('localhost:4009/')
 function Enter({location}) {
     const [room,setRoom]=useState('');
     const [welcome,setWelcome]=useState({});
     const [message,setMessage]=useState('');
     const [messages,setMessages]=useState([]);
+    const [errors,setErrors]=useState('');
+    let history=useHistory();
+
     useEffect(()=>{
         const {user,room_id}=queryString.parse(location.search)
         setRoom(room_id);
@@ -25,11 +29,22 @@ function Enter({location}) {
         .then(result=>{
             setMessages(messages=>[...messages,...result.data])
         })
+        .catch(err=>console.log(err));
         socket.on('message',(message_inc)=>{
             setMessages(messages=>[...messages,message_inc]);
         })
+        socket.on('error1',data=>{
+            setErrors('Room not found');
+        })
     },[]);
-    
+    console.log(errors,1);
+    if(errors!==''){
+        setTimeout(()=>{history.push('/join')},5000)
+        return(<Alert variant='light'>
+            <p>Room not found!</p>
+            </Alert>
+    )
+    }
     return (
         <Container fluid>
             <Card
