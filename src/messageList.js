@@ -7,22 +7,7 @@ export default function List({messages}) {
     const scrollToBottom = () => {
         messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
       }
-    const toHHMMSS = (date) => {
-        return new Date(date).toISOString().substr(11, 8);
-    }
-    const formatDate = (date) => {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
 
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-
-        return [year, month, day].join('-');
-    }
     useEffect(scrollToBottom, [messages]);
     const messageArray=messages.map((message)=>{
         return(
@@ -30,7 +15,7 @@ export default function List({messages}) {
                 <Card.Body>
                     <Card.Subtitle>
                         {message.sender}
-                       <span style={{float:'right'}} >{toHHMMSS(message.createdAt)}</span> 
+                       <span style={{float:'right'}} >{message.createdAt}</span> 
                     </Card.Subtitle>
                     <Card.Text>
                         {message.text}
