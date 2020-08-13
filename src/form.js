@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
-import {Link} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 function Form() {
     const [user,setUser]=useState('');
     const [room,setRoom]=useState('');
@@ -8,14 +8,14 @@ function Form() {
         <div className="Form">
             <div className="button-container">
                     <div className="button-item-1">
-                    <Link to="/">
+                    <NavLink to="/">
                         <button type="button" className="btn btn-default">Create</button>
-                    </Link>
+                    </NavLink>
                     </div>
                     <div className="button-item-2">
-                    <Link to="/join">
+                    <NavLink to="/join">
                         <button type="button" className="btn btn-default">Join</button>
-                    </Link>
+                    </NavLink>
                     </div>
                 </div>
             <div className="input-container">

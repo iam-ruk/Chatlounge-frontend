@@ -25,6 +25,7 @@ div.button-container{
   justify-content: flex-start;
   
 }
+
 div.button-item-1{
   background-color: beige;
   flex-shrink: 0;

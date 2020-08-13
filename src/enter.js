@@ -14,6 +14,10 @@ function Enter({location}) {
     const [message,setMessage]=useState('');
     const [messages,setMessages]=useState([]);
     const [errors,setErrors]=useState('');
+    const handleKeyDown = event => {
+        if (event.key === 'Enter' && message.trim()!== "")
+            socket.emit('message',message);
+    }
     let history=useHistory();
 
     useEffect(()=>{
@@ -60,7 +64,8 @@ function Enter({location}) {
     <Card.Footer  >
                     <InputGroup >
                         <FormControl  id="sendMessageInput" placeholder="Type message..." 
-                            onChange={(e)=>{setMessage(e.target.value)}} />
+                            onChange={(e)=>{setMessage(e.target.value)}} 
+                            onKeyDown={handleKeyDown}/>
                         <InputGroup.Append className=''>
                             <Button  variant='success' className='rounded text-light'
                               onClick={e=>{
