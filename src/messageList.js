@@ -15,7 +15,7 @@ export default function List({messages}) {
                 <Card.Body>
                     <Card.Subtitle>
                         {message.sender}
-                       <span style={{float:'right'}} >{message.createdAt}</span> 
+                       <span style={{float:'right'}} >{message.datetime}</span> 
                     </Card.Subtitle>
                     <Card.Text>
                         {message.text}
